@@ -6,13 +6,15 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.CadastroPage;
+import pages.LoginPage;
 
 import java.time.Duration;
 
-public class CadastroScenario {
+public class TransferenciaScenario {
 
     WebDriver driver; //Variaavel de escopo global
     CadastroPage cadastroPage;
+    LoginPage loginPage;
 
     @Before
     public void before() {
@@ -20,7 +22,8 @@ public class CadastroScenario {
         driver.manage().timeouts().implicitlyWait( Duration.ofSeconds( 10 ) );
         driver.manage().timeouts().pageLoadTimeout( Duration.ofSeconds( 10 ) );
         driver.manage().window().maximize();
-        cadastroPage = new CadastroPage(driver);
+        cadastroPage = new CadastroPage( driver );
+        loginPage = new LoginPage( driver );
         driver.get( "https://bugbank.netlify.app/" );
 
     }
@@ -35,6 +38,12 @@ public class CadastroScenario {
         cadastroPage.enviarTexto( cadastroPage.confirmaSenha, "1234" );
         cadastroPage.clicarElemento( cadastroPage.criarComSaldo );
         cadastroPage.clicarElemento( cadastroPage.cadastrar );
+
+        loginPage.enviarTexto( loginPage.imputEmail,"nathali.preto@gmail.com" );
+        loginPage.enviarTexto( loginPage.senha,"1234" );
+        loginPage.clicarElementos( loginPage.entrar );
+
+        //Realizar a transferencia- Criar a Page, colocar os elementos, e as ações. Depois incluir e fazer as chamadas neste Cenario
 
 
     }
